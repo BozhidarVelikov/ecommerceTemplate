@@ -27,7 +27,7 @@
 		          			<a class="nav-link" th:href="@{/}">Home</a>
 		        		</li>
 						<li class="nav-item">
-		         			<a class="nav-link active" th:href="@{/shop}">Shop</a>
+		         			<a class="nav-link" th:href="@{/shop}">Shop</a>
 		        		</li>
 						<li class="nav-item">
 		          			<a class="nav-link" th:href="@{/blog}">Blog</a>
@@ -46,57 +46,6 @@
 		    	</div>
 		  	</div>
 		</nav>
-		
-		<div class="row mx-auto container-fluid">
-			<section id="categories" class="mt-5 py-5 col-lg-3 col-md-6 col-1">
-				<div class="container text-center mt-5 py-3">
-					<h3>Categories</h3>
-					<hr class="mx-auto">
-					<p>Pick a category.</p>
-				</div>
-				<ul class="text-uppercase list-unstyled mx-5">
-					<li th:each="category:${categories}"><a href="#" th:text="${category.category}"  th:classappend="${category.category} eq ${activeCategory.category} ? 'category-active'" th:href="@{'/shop?category=' + ${category.category}}"></a></li>
-				</ul>
-			</section>
-			<section id="products" class="mt-5 py-5 col-lg-9 col-md-6 col-12">
-				<div class="container text-center mt-5 py-3">
-					<h3 th:text="${activeCategory.category}"></h3>
-					<hr class="mx-auto">
-					<p>Our best products designed especially for you.</p>
-				</div>
-				<div class="row mx-auto container-fluid">
-					<div th:each="uri:${featuredUris}" class="product text-center col-lg-4 col-md-6 col-12" th:onclick="|location.href='/product/' + ${uri.product.id}|">
-						<img class="img-fluid mb-3" th:src="${uri.uri}"> <!-- /images/featured/1.jpg -->
-						<h5 class="product-name" th:text="${uri.product.name}"></h5>
-						<h4 class="product-price" th:text="${#numbers.formatCurrency(uri.product.price)}"></h4>
-						<button class="buy-button">Buy Now</button>
-					</div>
-				</div>
-				<nav aria-label="Page navigation example">
-			  		<ul class="pagination mt-5 justify-content-center">
-			    		<li class="page-item" th:classappend="${currentPage + 1} eq 1 or ${pages} eq 0? 'disabled'">
-			      			<a class="page-link" th:href="@{'/shop?page=' + ${currentPage - 1}} + '&category=' + ${activeCategory.category}" aria-label="Previous">
-			        			<span aria-hidden="true">&laquo;</span>
-			      			</a>
-			    		</li>
-						<li class="page-item px-1px" th:classappend="${pages} > 3 and ${currentPage + 1} > 2? '' : 'hide'">
-							<p class="page-link">...</p>
-						</li>
-						<li th:each="i:${#numbers.sequence(currentPage, currentPage + 2)}" th:classappend="${i} eq ${currentPage + 1} ? 'active'" th:styleappend="${pages} eq 0 or ${i} < 1 or ${i} > ${pages}? 'display:none'" class="page-item">
-							<a th:text="${i}" class="page-link" th:href="@{'/shop?page=' + ${i - 1}} + '&category=' + ${activeCategory.category}"></a>
-						</li>
-						<li class="page-item px-1px" th:classappend="${pages} > 3 and ${currentPage + 1} < ${pages - 1}? '' : 'hide'">
-							<p class="page-link">...</p>
-						</li>
-			    		<li class="page-item" th:classappend="${currentPage + 1} eq ${pages} or ${pages} eq 0? 'disabled'">
-			      			<a class="page-link" th:href="@{'/shop?page=' + ${currentPage + 1}} + '&category=' + ${activeCategory.category}" aria-label="Next">
-			        			<span aria-hidden="true">&raquo;</span>
-			      			</a>
-			    		</li>
-			  		</ul>
-				</nav>
-			</section>
-		</div>
 		
 		<footer class="mt-5 py-5">
 			<div class="row container mx-auto pt-5">

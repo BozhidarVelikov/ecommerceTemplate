@@ -107,7 +107,7 @@ public class MainController {
 			productsCategory = (Category)((ArrayList)categoryRepository.findAll()).get(0);
 		}
 		
-		Pageable pageRequest = PageRequest.of(page, 1);
+		Pageable pageRequest = PageRequest.of(page, 12);
 		
 		// Get the specific page of products with specific category
 		Page<Product> products = productRepository.findAllByCategory(productsCategory, pageRequest);
@@ -137,7 +137,6 @@ public class MainController {
 		
 		// Get total number of pages
 		model.addAttribute("pages", products.getTotalPages());
-		System.out.println(products.getTotalPages());
 		
 		// Get current page
 		model.addAttribute("currentPage", page);
@@ -149,4 +148,10 @@ public class MainController {
 		
 		return "shop";		
 	}
+	
+	@GetMapping(path="/product/{id}")
+	public String product(Model model, @PathVariable Integer id) {
+		return "product";
+	}
+	
 }
