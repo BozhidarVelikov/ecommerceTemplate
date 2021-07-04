@@ -57,10 +57,17 @@ button:hover {
 	background-color: #3a3833;
 }
 
+hr {
+	width: 30px;
+	height: 2px;
+	background-color: coral;
+}
+
 .navbar {
 	font-size: 16px;
 	top: 0;
 	left: 0;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -205,4 +212,155 @@ button:hover {
 	flex-direction: column;
 	align-items: flex-end;
 	text-align: end;
+}
+
+/* PRODUCTS */
+.product {
+	cursor: pointer;
+	margin-bottom: 2rem;
+}
+
+.product img {
+	transition: 0.3s all;
+}
+
+.product:hover img {
+	opacity: 0.7;
+}
+
+.product .buy-button {
+	background-color: coral;
+	transform: translateY(20px);
+	opacity: 0;
+	transition: 0.3s all;
+}
+
+.product:hover .buy-button {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+#banner {
+	background-image: url("../images/banner/2.jpg");
+	width: 100%;
+	height: 60vh;
+	background-size: cover;
+	background-position: top 70px center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+#banner h4 {
+	color: #D8D8D8;
+}
+
+#banner h1 {
+	color: white;
+}
+
+#banner button {
+	background-color: coral;
+}
+
+footer {
+	background-color: #222222;
+}
+
+footer h5 {
+	color: #D8D8D8;
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+
+footer li {
+	padding-bottom: 4px;
+}
+
+footer li a {
+	font-size: 0.8rem;
+	color: #999;
+	
+}
+
+footer li a:hover {
+	color: #D8D8D8;
+}
+
+footer p {
+	color: #999;
+	font-size: 0.8rem;
+}
+
+footer .copyright a {
+	color: black;
+	width: 38px;
+	height: 38px;
+	background-color: white;
+	display: inline-block;
+	text-align: center;
+	line-height: 38px;
+	border-radius: 50%;
+	transition: 0.3s ease;
+	margin: 0 5px;
+}
+
+footer .copyright a:hover {
+	color: white;
+	background-color: coral;
+}
+
+#categories li {
+	padding-bottom: 6px;
+}
+
+#categories li a {
+	font-size: 1rem;
+	color: black;
+	
+}
+
+#categories li a.category-active {
+	color: coral;
+}
+
+#categories li a:hover {
+	color: #999;
+}
+
+.hide {
+	display: none;
+}
+
+#products > nav > ul > li.page-item.active > a {
+	background-color: black;
+	border: 1px solid black;
+}
+
+#products > nav > ul > li:nth-child(n) > a:hover {
+	background-color: coral;
+	border: 1px solid coral;
+	color: white;
+}
+
+.pagination a{
+	color: black;
+}
+
+p.page-link {
+	position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: black;
+    background-color: #fff;
+	border: none;
+}
+
+.px-1px {
+	padding: 0 1px;
 }
