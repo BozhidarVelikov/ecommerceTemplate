@@ -1,6 +1,5 @@
 package com.bojidarET.ecommerceTemplate.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +17,7 @@ public class Category {
 	private String category;
 	
 	@OneToMany(mappedBy="category")
-	private List<Product> products = new ArrayList<>();
+	private List<ProductCategory> productCategory;
 
 	public int getId() {
 		return id;
@@ -36,11 +35,11 @@ public class Category {
 		this.category = category;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public List<ProductCategory> getProducts() {
+		return productCategory;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setProducts(List<ProductCategory> productCategory) {
+		this.productCategory = productCategory;
 	}
 }

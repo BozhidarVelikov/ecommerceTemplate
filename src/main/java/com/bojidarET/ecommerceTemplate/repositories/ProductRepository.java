@@ -10,6 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.bojidarET.ecommerceTemplate.entities.Category;
 import com.bojidarET.ecommerceTemplate.entities.Product;
+import com.bojidarET.ecommerceTemplate.entities.ProductCategory;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
@@ -17,7 +18,9 @@ import com.bojidarET.ecommerceTemplate.entities.Product;
 public interface ProductRepository extends PagingAndSortingRepository<Product, Integer>, CrudRepository<Product, Integer> {
 	Page<Product> findAllByPrice(double price, Pageable pageable);
 	
-	Page<Product> findAllByCategory(Category category, Pageable pageable);
+	Page<Product> findAllByProductCategory(ProductCategory category, Pageable pageable);
 	
 	Page<Product> findAll(Pageable pageable);
+	
+	Page<Product> findAllByIdIn(List<Integer> ids, Pageable pageable);
 }

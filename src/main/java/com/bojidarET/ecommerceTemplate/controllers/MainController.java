@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bojidarET.ecommerceTemplate.entities.Category;
 import com.bojidarET.ecommerceTemplate.entities.ImageUri;
 import com.bojidarET.ecommerceTemplate.entities.Product;
+import com.bojidarET.ecommerceTemplate.entities.ProductCategory;
 import com.bojidarET.ecommerceTemplate.entities.User;
 import com.bojidarET.ecommerceTemplate.repositories.CategoryRepository;
 import com.bojidarET.ecommerceTemplate.repositories.ImageUriRepository;
+import com.bojidarET.ecommerceTemplate.repositories.ProductCategoryRepository;
 import com.bojidarET.ecommerceTemplate.repositories.ProductRepository;
 import com.bojidarET.ecommerceTemplate.repositories.UserRepository;
 
@@ -41,6 +43,9 @@ public class MainController {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private ProductCategoryRepository productCategoryRepository;
 	
 	@PostMapping(path="/user-add")
 	public @ResponseBody String addNewUser (@RequestParam String fName,
@@ -107,10 +112,16 @@ public class MainController {
 			productsCategory = (Category)((ArrayList)categoryRepository.findAll()).get(0);
 		}
 		
+		ArrayList<ProductCategory> productCategories = (ArrayList)productCategoryRepository.findAllByCategoryId(productsCategory.getId());
+		ArrayList<Integer> productIds = new ArrayList<>();
+		for(int i = 0; i < productCategories.size(); i++) {
+			productIds.add(productCategories.get(i).getProduct().getId());
+		}
+		
 		Pageable pageRequest = PageRequest.of(page, 12);
 		
 		// Get the specific page of products with specific category
-		Page<Product> products = productRepository.findAllByCategory(productsCategory, pageRequest);
+		Page<Product> products = productRepository.findAllByIdIn(productIds, pageRequest);
 		
 		// Take the IDs of all the products from above 
 		Set<Integer> ids = new HashSet<>();
